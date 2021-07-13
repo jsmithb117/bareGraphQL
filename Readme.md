@@ -3,10 +3,14 @@ This repo is a very simple implementation of GraphQL.
 Sample query:
 
 query {
-    getInstructor(courseNumber: 1) {
+    getInstructor(courseNumber: 4) {
         firstName,
         middleInitial,
-        lastName
+        lastName,
+        courses {
+            courseNumber,
+            isPrimaryInstructor
+        }
     }
 }
 
@@ -15,9 +19,23 @@ returns:
 {
     "data": {
         "getInstructor": {
-            "firstName": "John",
-            "middleInitial": "M",
-            "lastName": "Smith"
+            "firstName": "Peter",
+            "middleInitial": "",
+            "lastName": "Griffin",
+            "courses": [
+                {
+                    "courseNumber": 4,
+                    "isPrimaryInstructor": true
+                },
+                {
+                    "courseNumber": 5,
+                    "isPrimaryInstructor": true
+                },
+                {
+                    "courseNumber": 3,
+                    "isPrimaryInstructor": false
+                }
+            ]
         }
     }
 }
